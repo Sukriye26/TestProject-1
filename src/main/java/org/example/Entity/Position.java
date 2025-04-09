@@ -1,13 +1,13 @@
-package org.example;
+package org.example.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
-public class Department {
+public class Position {
     @Id
-    private int departmentId;
+    private int positionId;
 
     private String description;
 }

@@ -1,18 +1,16 @@
-package org.example;
+package org.example.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 @Entity
 @Data
 public class Employee {
+
     @Id
-    @Getter
-    private int id;
+    public int id;
     private String name;
-    @Getter
     private double salary;
     private int departmentId;
     private String surname;
@@ -22,7 +20,6 @@ public class Employee {
     private int addressId;
     private int staffId;
     private String email;
-    @Getter
     public int leaveDays;
 
 
@@ -31,13 +28,13 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee (int id){
+    public Employee(){
         this.id = id;
     }
 
-    public Employee(String name, double salary, int departmentId, String surname, double birthDate, int positionId, Gender gender, LocalDateTime startingDate, int addressId, int staffId, String email, Status status) {
+    public Employee(int id, String name, double salary, int departmentId, String surname, double birthDate, int positionId, Gender gender, LocalDateTime startingDate, int addressId, int staffId, String email, Status status) {
         this.name = name;
-        this.id = setEmployeeId() ;
+        this.id = id ;
         this.salary = salary;
         this.departmentId = departmentId;
         this.surname = surname;
@@ -49,15 +46,6 @@ public class Employee {
         this.staffId = staffId;
         this.email = email;
         this.status = status;
-    }
-
-    private int setEmployeeId(){
-
-        return 1;
-    }
-
-    public double getSalaryByEmployeeId(int employeeId){
-        return salary;
     }
 
     @ManyToOne
@@ -77,5 +65,31 @@ public class Employee {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    public double getSalary() {
+        return 10000;
+    }
+
+    public int getId(){
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLeaveDays() {
+        return leaveDays;
+    }
+
+    public void setLeaveDays(int leaveDays) {
+        this.leaveDays = leaveDays;
+    }
+
+    public boolean isEmployeeExist (int employeeId){
+        //employe var mı kodu gelecek
+        return true;
+    }
+
 
 }

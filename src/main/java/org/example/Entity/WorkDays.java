@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Entity;
 
 import lombok.Getter;
 
@@ -8,30 +8,32 @@ public class WorkDays {
 
     private int holidayDays; // O ayın tatil günlerinin sayısı
     private int weekendDays; // Haftasonu gün sayısı (Cumartesi ve Pazar)
-
+    private int leaveDays;   //çalışanın izinli olduğu gün sayısı
     @Getter
     private int workDays;    // Hesaplanan çalışma günü sayısı
+
 
     public WorkDays() {
 
         this.holidayDays = 0;
         this.weekendDays = 0;
         this.workDays = 0;
+        this.leaveDays =0;
     }
 
-    // Çalışma günlerini hesaplayan metot
-    public int calculateWorkDays(int year, int month, int holidayDays) {
+    // Aydaki çalışma günlerini hesaplayan metot
+    public int calculateWorkDays(int year, int month, int holidayDays, int leaveDays) {
         int totalDaysInMonth = getTotalDaysInMonth(year, month);
 
-        this.holidayDays = holidayDays;  // Resmi Tatil günleri - şimdilik dışardan 3, 5 gibi almaya karar verdim.
+        this.holidayDays = holidayDays;  // Resmi Tatil günleri - şimdilik dışardan almaya karar verdim.
         this.weekendDays = getWeekendDays(year, month);  // Haftasonu günleri
 
         // Çalışma gününü hesapla
-        this.workDays = totalDaysInMonth - this.holidayDays - this.weekendDays;
+        this.workDays = totalDaysInMonth - this.holidayDays - this.weekendDays- leaveDays;
         return  workDays;
     }
 
-    // Ayın toplam gün sayısını döndüren metot
+    // Ayın toplam gün sayısını döndüren metot, 31, 30, 28 olabilir.
     private int getTotalDaysInMonth(int year, int month) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, month - 1, 1);

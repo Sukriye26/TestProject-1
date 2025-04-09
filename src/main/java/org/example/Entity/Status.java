@@ -1,14 +1,14 @@
-package org.example;
+package org.example.Entity;
 
-public enum Gender {
-    KADIN("Kadın"),
-    ERKEK("Erkek"),
-    OTHER("Other");
+public enum Status {
+    JUNIOR("Junior"),
+    MID_LEVEL("Mid-Level"),
+    SENIOR("Senior-1");
 
     private String description;
 
     // Enum constructor
-    Gender(String description) {
+    Status(String description) {
         this.description = description;
     }
 
