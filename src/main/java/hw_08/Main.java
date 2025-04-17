@@ -25,20 +25,14 @@ public class Main {
 
         for (String word: words){
             HashSet<Character> repeatedCharacters = new HashSet<>();
-            boolean addedNewChar = false;
+
             for (int i =0; i<word.length(); i++){
                 char character = word.charAt(i);
-                if (!repeatedCharacters.add(character)){
-                    if (seenCharacters.add(character)){
-                        addedNewChar =true;
-                    }
-
-                }
-                else{
-                    repeatedCharacters.add(character);
+                if (!repeatedCharacters.add(character)) {
+                    seenCharacters.add(character);
                 }
             }
-            if (repeatedCharacters.size()>=2 && addedNewChar){
+            if (repeatedCharacters.size()>=2){
                 seenCharacters.addAll(repeatedCharacters);
                 validWordCounter++;
                 System.out.println("tekrar eden kelime: "+word);
